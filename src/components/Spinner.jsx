@@ -1,34 +1,26 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 
-const initialState = { storageValue: 100, transferValue: 400 };
+import { StoreContext } from '../App';
 
 export default function Spinner() {
-  const [values, setValues] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    initialState,
-  );
-  function transferChangeHandler(value) {
-    setValues({ transferValue: value });
-  }
-  function storageChangeHandler(value) {
-    setValues({ storageValue: value });
-  }
+  const { state, setState } = useContext(StoreContext);
+
   return (
     <div>
-      <span>{values.storageValue}</span>
+      <span className="amount-info">{`${state.storage} GB`}</span>
       <input
         type="range"
         min="0"
         max="1000"
-        onChange={e => storageChangeHandler(e.target.value)}
+        onChange={e => setState({ storage: e.target.value })}
       ></input>
-      <span>{values.transferValue}</span>
+      <span className="amount-info">{`${state.transfer} GB`}</span>
       <input
         type="range"
         min="0"
         max="1000"
         step="1"
-        onChange={e => transferChangeHandler(e.target.value)}
+        onChange={e => setState({ transfer: e.target.value })}
       ></input>
     </div>
   );
