@@ -1,2 +1,18 @@
+@import './breakpoints.scss';
 @import './diagram.scss';
 @import './spinner.scss';
+@import './bars.scss';
+
+img {
+  width: 40px;
+  height: 40px;
+}
+span {
+  width: 100px;
+}
+.container {
+  display: flex;
+  @include for-large-down {
+    flex-direction: column-reverse;
+  }
+}
