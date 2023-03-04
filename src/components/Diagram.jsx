@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { StoreContext } from '../App';
-import Bars from './Bars';
 
 export default function Diagram() {
   const { state, setState } = useContext(StoreContext);
@@ -12,64 +11,58 @@ export default function Diagram() {
   }
 
   return (
-    <>
-      <div className="providers">
-        <div className="provider-container">
-          <span>backblaze</span>
-        </div>
-        <div className="provider-container">
-          <span>bunny</span>
+    <div className="providers">
+      <div className="provider-container">
+        <span>backblaze</span>
+      </div>
+      <div className="provider-container">
+        <span>bunny</span>
 
+        <div className="radio">
+          <input
+            type="radio"
+            name="HDD"
+            value="HDD"
+            defaultChecked={true}
+            onChange={e => handleStoreChange(e.target.value)}
+          />
+          <label htmlFor="HDD">HDD</label>
           <div className="radio">
             <input
               type="radio"
               name="HDD"
-              value="HDD"
-              defaultChecked={true}
+              value="SSD"
               onChange={e => handleStoreChange(e.target.value)}
             />
-            <label htmlFor="HDD">HDD</label>
-
-            <div className="radio">
-              <input
-                type="radio"
-                name="HDD"
-                value="SSD"
-                onChange={e => handleStoreChange(e.target.value)}
-              />
-              <label htmlFor="HDD">SSD</label>
-            </div>
+            <label htmlFor="HDD">SSD</label>
           </div>
         </div>
-        <div className="provider-container">
-          <span>scaleway</span>
-
+      </div>
+      <div className="provider-container">
+        <span>scaleway</span>
+        <div className="radio">
+          <input
+            type="radio"
+            name="type"
+            value="multi"
+            defaultChecked={true}
+            onChange={e => handleModeChange(e.target.value)}
+          />
+          <label htmlFor="type">Multi</label>
           <div className="radio">
             <input
               type="radio"
               name="type"
-              value="multi"
-              defaultChecked={true}
+              value="single"
               onChange={e => handleModeChange(e.target.value)}
             />
-            <label htmlFor="type">Multi</label>
-
-            <div className="radio">
-              <input
-                type="radio"
-                name="type"
-                value="single"
-                onChange={e => handleModeChange(e.target.value)}
-              />
-              <label htmlFor="type">Single</label>
-            </div>
+            <label htmlFor="type">Single</label>
           </div>
         </div>
-        <div className="provider-container">
-          <span>vultr</span>
-        </div>
       </div>
-      <Bars state={state} />
-    </>
+      <div className="provider-container">
+        <span>vultr</span>
+      </div>
+    </div>
   );
 }
